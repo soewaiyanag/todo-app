@@ -1,9 +1,20 @@
 import BackgroundImage from "@/Components/BackgroundImage";
-import { Link, Head } from "@inertiajs/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TodoItem from "@/Components/TodoItem";
+import { Link, Head, useForm } from "@inertiajs/react";
 
-export default function Todo({ auth }) {
+export default function Todo({ auth, todos }) {
+    const { data, setData, post, reset } = useForm({
+        task: "",
+    });
+
     const toggleDarkMode = () => {
         document.body.classList.toggle("dark");
+    };
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route("todos.store"), { onSuccess: () => reset() });
     };
 
     return (
@@ -24,6 +35,21 @@ export default function Todo({ auth }) {
                     className="w-6 h-6 cursor-pointer block dark:hidden"
                     src="/images/icon-moon.svg"
                 />
+            </div>
+            <div>
+                <form onSubmit={submit}>
+                    <input
+                        type="text"
+                        name="task"
+                        id="task"
+                        value={data.task}
+                        onChange={(e) => setData("task", e.target.value)}
+                    />
+                </form>
+
+                {todos.map((todo) => (
+                    <TodoItem task={todo.task} key={todo.id} />
+                ))}
             </div>
         </div>
     );

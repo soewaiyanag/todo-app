@@ -28,7 +28,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'task' => 'required|string|max:255'
+        ]);
+
+        $request->user()->todos()->create($validated);
+
+        return redirect(route('home'));
     }
 
     /**

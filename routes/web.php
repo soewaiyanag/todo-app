@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TodoController;
+use App\Models\Todo;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,15 +19,22 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    $todos = Todo::latest()->get();
     return Inertia::render('Todo', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-    ]);
-})->middleware(['auth']);
+        'todos' => $todos
+    ]);})
+    ->middleware(['auth'])
+    ->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('todos', TodoController::class)
+    ->only(['store', 'destroy'])
+    ->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
