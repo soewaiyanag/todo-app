@@ -19,7 +19,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    $todos = Todo::latest()->get();
+    $todos = auth()->user()->todos()->latest()->get();
     return Inertia::render('Todo', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),

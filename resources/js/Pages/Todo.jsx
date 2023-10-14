@@ -37,19 +37,22 @@ export default function Todo({ auth, todos }) {
                 />
             </div>
             <div>
-                <form onSubmit={submit}>
+                <form onSubmit={submit} className="max-w-sm mx-auto">
                     <input
                         type="text"
                         name="task"
                         id="task"
                         value={data.task}
                         onChange={(e) => setData("task", e.target.value)}
+                        className="w-full border-none rounded-md mb-4 mt-8"
                     />
                 </form>
 
-                {todos.map((todo) => (
-                    <TodoItem task={todo.task} key={todo.id} />
-                ))}
+                <div className="rounded-md overflow-hidden shadow-md max-w-sm w-full mx-auto">
+                    {todos.map((todo) => (
+                        <TodoItem task={todo.task} key={todo.id} />
+                    ))}
+                </div>
             </div>
         </div>
     );
