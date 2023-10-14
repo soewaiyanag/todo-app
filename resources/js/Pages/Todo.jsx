@@ -18,10 +18,10 @@ export default function Todo({ auth, todos }) {
     };
 
     return (
-        <div className="font-josefin">
+        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue">
             <Head title="Todo App" />
             <BackgroundImage />
-            <div className="flex max-w-sm w-full justify-between items-center mx-auto mt-12">
+            <div className="flex max-w-sm w-full justify-between items-center mx-auto mt-12 relative z-20">
                 <h1 className="text-3xl font-bold text-white tracking-[.35em]">
                     TODO
                 </h1>
@@ -36,7 +36,7 @@ export default function Todo({ auth, todos }) {
                     src="/images/icon-moon.svg"
                 />
             </div>
-            <div>
+            <div className="relative z-20">
                 <form onSubmit={submit} className="max-w-sm mx-auto">
                     <input
                         type="text"
@@ -44,7 +44,8 @@ export default function Todo({ auth, todos }) {
                         id="task"
                         value={data.task}
                         onChange={(e) => setData("task", e.target.value)}
-                        className="w-full border-none rounded-md mb-4 mt-8"
+                        placeholder="Create a new todo..."
+                        className="w-full border-none rounded-md px-4 py-3 mb-4 mt-8 dark:bg-very-dark-desaturated-blue dark:caret-white dark:text-very-light-grayish-blue"
                     />
                 </form>
 

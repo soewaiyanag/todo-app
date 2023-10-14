@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.todo-item {
+    @apply px-4 py-3 bg-white dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
+        border-very-light-grayish-blue border-b-[.1px] last:border-none
+        grid grid-cols-[auto_1fr_auto] gap-4 items-center;
+}
+
+.todo-item:hover > img[alt="cross-icon"] {
+    @apply block;
+}
+
 .todo-checkbox {
-    @apply rounded-full w-5 h-5 cursor-pointer;
+    @apply rounded-full w-5 h-5 cursor-pointer bg-transparent;
 }
 
 .todo-checkbox:checked {

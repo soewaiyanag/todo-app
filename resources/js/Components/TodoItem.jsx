@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 
 export default function TodoItem({ task }) {
     const [completed, setCompleted] = useState(false);
@@ -8,7 +9,7 @@ export default function TodoItem({ task }) {
     };
 
     return (
-        <div className="p-2 bg-white border-bottom border last:border-none grid grid-cols-[auto_1fr_auto] gap-4 items-center">
+        <div className="todo-item">
             <input
                 className="todo-checkbox"
                 type="checkbox"
@@ -18,8 +19,9 @@ export default function TodoItem({ task }) {
             <span className={completed ? "line-through" : ""}>{task}</span>
             <img
                 src="/images/icon-cross.svg"
-                alt="cross icon"
-                className="w-3.5"
+                alt="cross-icon"
+                className="w-3.5 cursor-pointer md:hidden"
+                onClick={() => console.log("Delete task")}
             />
         </div>
     );
