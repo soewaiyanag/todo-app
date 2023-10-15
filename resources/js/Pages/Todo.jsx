@@ -1,7 +1,7 @@
 import BackgroundImage from "@/Components/BackgroundImage";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TodoItem from "@/Components/TodoItem";
-import { Link, Head, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import clsx from "clsx";
 
 export default function Todo({ auth, todos }) {
@@ -54,13 +54,13 @@ export default function Todo({ auth, todos }) {
                         value={data.task}
                         onChange={(e) => setData("task", e.target.value)}
                         placeholder="Create a new todo..."
-                        className="absolute w-full h-12 pl-12 inset-0 outline-none rounded-md border-none bg-transparent dark:caret-white dark:text-very-light-grayish-blue"
+                        className="absolute min-w-full h-12 pl-12 inset-0 outline-none rounded-md border-none bg-transparent dark:caret-white dark:text-very-light-grayish-blue"
                     />
                 </form>
 
                 <div className="rounded-md overflow-hidden shadow-md max-w-sm w-full mx-auto">
                     {todos.map((todo) => (
-                        <TodoItem task={todo.task} key={todo.id} />
+                        <TodoItem key={todo.id} todo={todo} />
                     ))}
                 </div>
             </div>

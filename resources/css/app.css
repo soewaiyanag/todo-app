@@ -21,6 +21,5 @@
 }
 
 .todo-checkbox:checked::after {
-    content: url("/images/icon-check.svg");
-    @apply grid justify-center pt-1.5;
+    @apply content-[url("/images/icon-check.svg")] grid justify-center pt-1.5;
 }

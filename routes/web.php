@@ -33,7 +33,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('todos', TodoController::class)
-    ->only(['store', 'destroy'])
+    ->only(['store', 'update', 'destroy'])
     ->middleware(['auth']);
 
 Route::middleware('auth')->group(function () {
