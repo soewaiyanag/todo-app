@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\Todo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +20,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Todo::factory()->count(6)->create([
+            'user_id' => User::factory()->createOne()
+        ]);
     }
 }

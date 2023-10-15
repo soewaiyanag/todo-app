@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.todo-form {
+    @apply px-4 py-4 mb-4 mt-8 flex items-center h-12 max-w-sm mx-auto relative
+        rounded-md bg-white dark:bg-very-dark-desaturated-blue;
+}
+
 .todo-item {
     @apply px-4 py-3 bg-white dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
         border-dark-grayish-blue border-b-[.1px] last:border-none
@@ -9,7 +14,7 @@
 }
 
 .todo-item:hover > [aria-label="Delete"] {
-    @apply block;
+    @apply visible;
 }
 
 .todo-checkbox {

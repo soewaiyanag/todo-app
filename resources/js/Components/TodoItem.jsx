@@ -23,7 +23,7 @@ export default function TodoItem({ todo }) {
                 as="button"
                 method="delete"
                 href={route("todos.destroy", todo.id)}
-                className="md:hidden w-3.5 cursor-pointer"
+                className="md:invisible w-3.5 cursor-pointer"
                 aria-label="Delete"
             >
                 <img src="/images/icon-cross.svg" alt="cross-icon" />
