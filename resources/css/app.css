@@ -8,7 +8,7 @@
         grid grid-cols-[auto_1fr_auto] gap-4 items-center;
 }
 
-.todo-item:hover > img[alt="cross-icon"] {
+.todo-item:hover > [aria-label="Delete"] {
     @apply block;
 }
 

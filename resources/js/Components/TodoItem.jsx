@@ -1,10 +1,10 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, Link } from "@inertiajs/react";
 
 export default function TodoItem({ todo }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
 
     const handleCheckboxChange = () => {
-        put(route("todos.update", todo), data);
+        put(route("todos.update", todo.id), data);
         setData({ completed: !data.completed });
     };
 
@@ -19,11 +19,15 @@ export default function TodoItem({ todo }) {
             <span className={data.completed ? "line-through" : ""}>
                 {todo.task}
             </span>
-            <img
-                src="/images/icon-cross.svg"
-                alt="cross-icon"
-                className="w-3.5 cursor-pointer md:hidden"
-            />
+            <Link
+                as="button"
+                method="delete"
+                href={route("todos.destroy", todo.id)}
+                className="md:hidden w-3.5 cursor-pointer"
+                aria-label="Delete"
+            >
+                <img src="/images/icon-cross.svg" alt="cross-icon" />
+            </Link>
         </div>
     );
 }
