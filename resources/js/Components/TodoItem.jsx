@@ -1,5 +1,4 @@
 import { useState } from "react";
-import clsx from "clsx";
 
 export default function TodoItem({ task }) {
     const [completed, setCompleted] = useState(false);

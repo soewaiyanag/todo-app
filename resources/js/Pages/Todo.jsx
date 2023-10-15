@@ -2,6 +2,7 @@ import BackgroundImage from "@/Components/BackgroundImage";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TodoItem from "@/Components/TodoItem";
 import { Link, Head, useForm } from "@inertiajs/react";
+import clsx from "clsx";
 
 export default function Todo({ auth, todos }) {
     const { data, setData, post, reset } = useForm({
@@ -37,7 +38,15 @@ export default function Todo({ auth, todos }) {
                 />
             </div>
             <div className="relative z-20">
-                <form onSubmit={submit} className="max-w-sm mx-auto">
+                <form
+                    onSubmit={submit}
+                    className={clsx(
+                        "px-4 py-4 mb-4 mt-8 flex items-center h-12",
+                        "max-w-sm mx-auto relative rounded-md",
+                        "bg-white dark:bg-very-dark-desaturated-blue"
+                    )}
+                >
+                    <div className="todo-checkbox border absolute"></div>
                     <input
                         type="text"
                         name="task"
@@ -45,7 +54,7 @@ export default function Todo({ auth, todos }) {
                         value={data.task}
                         onChange={(e) => setData("task", e.target.value)}
                         placeholder="Create a new todo..."
-                        className="w-full border-none rounded-md px-4 py-3 mb-4 mt-8 dark:bg-very-dark-desaturated-blue dark:caret-white dark:text-very-light-grayish-blue"
+                        className="absolute w-full h-12 pl-12 inset-0 outline-none rounded-md border-none bg-transparent dark:caret-white dark:text-very-light-grayish-blue"
                     />
                 </form>
 
