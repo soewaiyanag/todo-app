@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .todo-form {
-    @apply px-4 py-4 mb-4 mt-8 flex items-center h-12 max-w-sm mx-auto relative
+    @apply px-4 py-4 mb-4 mt-8 flex items-center h-12 max-w-sm md:max-w-md mx-auto relative
         rounded-md bg-white dark:bg-very-dark-desaturated-blue;
 }
 
@@ -27,7 +27,14 @@
 }
 
 .control-panel {
-    @apply relative p-4 text-xs flex justify-between bg-white
+    @apply relative text-xs flex items-center justify-between bg-white
         dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
-        rounded-b-lg;
+        rounded-b-lg px-4 py-3;
+}
+
+.filters {
+    @apply absolute px-4 py-3 shadow-md bg-white dark:bg-very-dark-desaturated-blue
+        flex justify-center gap-4 rounded-md w-full
+        translate-y-14 -translate-x-1/2 left-1/2 text-sm
+        md:text-xs md:w-fit md:bg-transparent md:translate-y-0 md:shadow-none md:space-x-0 md:flex md:items-center;
 }
