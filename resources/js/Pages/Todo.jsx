@@ -1,4 +1,5 @@
 import BackgroundImage from "@/Components/BackgroundImage";
+import ControlPanel from "@/Components/ControlPanel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TodoItem from "@/Components/TodoItem";
 import { Head, useForm } from "@inertiajs/react";
@@ -50,10 +51,11 @@ export default function Todo({ auth, todos }) {
                     />
                 </form>
 
-                <div className="rounded-md overflow-hidden shadow-md max-w-sm w-full mx-auto">
+                <div className="rounded-md shadow-md max-w-sm w-full mx-auto">
                     {todos.map((todo) => (
                         <TodoItem key={todo.id} todo={todo} />
                     ))}
+                    <ControlPanel />
                 </div>
             </div>
         </div>

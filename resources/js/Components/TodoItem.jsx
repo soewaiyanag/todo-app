@@ -9,7 +9,7 @@ export default function TodoItem({ todo }) {
     };
 
     return (
-        <div className="todo-item">
+        <div className="todo-item group">
             <input
                 className="todo-checkbox"
                 type="checkbox"
@@ -23,7 +23,7 @@ export default function TodoItem({ todo }) {
                 as="button"
                 method="delete"
                 href={route("todos.destroy", todo.id)}
-                className="md:invisible w-3.5 cursor-pointer"
+                className="md:invisible w-3.5 cursor-pointer group-hover:visible"
                 aria-label="Delete"
             >
                 <img src="/images/icon-cross.svg" alt="cross-icon" />

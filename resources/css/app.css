@@ -10,11 +10,8 @@
 .todo-item {
     @apply px-4 py-3 bg-white dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
         border-dark-grayish-blue border-b-[.1px] last:border-none
-        grid grid-cols-[auto_1fr_auto] gap-4 items-center;
-}
-
-.todo-item:hover > [aria-label="Delete"] {
-    @apply visible;
+        grid grid-cols-[auto_1fr_auto] gap-4 items-center
+        first:rounded-t-md last:rounded-b-md md:last:rounded-none;
 }
 
 .todo-checkbox {
@@ -27,4 +24,10 @@
 
 .todo-checkbox:checked::after {
     @apply content-[url("/images/icon-check.svg")] grid justify-center pt-1.5;
+}
+
+.control-panel {
+    @apply relative p-4 text-xs flex justify-between bg-white
+        dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
+        rounded-b-lg;
 }
