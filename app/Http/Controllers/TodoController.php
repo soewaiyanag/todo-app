@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -12,7 +14,17 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = auth()->user()->todos()->latest()->get();
+        
+        $filterCompletedQuery = request()->query('completed');
+        $filterCompleted = $filterCompletedQuery === 'true' ? true : ($filterCompletedQuery == 'false' ? false : null);
+
+        return Inertia::render('Todo', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'todos' => $todos,
+            'filterCompleted' => $filterCompleted
+        ]);
     }
 
     /**

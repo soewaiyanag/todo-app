@@ -26,6 +26,7 @@ export default function TodoItem({ todo }) {
                 href={route("todos.destroy", todo.id)}
                 className="md:invisible w-3.5 cursor-pointer group-hover:visible"
                 aria-label="Delete"
+                preserveScroll
             >
                 <img src="/images/icon-cross.svg" alt="cross-icon" />
             </Link>

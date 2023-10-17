@@ -2,9 +2,9 @@ import BackgroundImage from "@/Components/BackgroundImage";
 import ControlPanel from "@/Components/ControlPanel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TodoItem from "@/Components/TodoItem.1";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Todo({ auth, todos }) {
+export default function Todo({ auth, todos, filterCompleted }) {
     const { data, setData, post, reset } = useForm({
         task: "",
     });
@@ -19,13 +19,15 @@ export default function Todo({ auth, todos }) {
     };
 
     return (
-        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6">
+        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6 pb-40">
             <Head title="Todo App" />
             <BackgroundImage />
             <div className="flex max-w-sm md:max-w-md w-full justify-between items-center mx-auto mt-12 relative z-20">
-                <h1 className="text-3xl font-bold text-white tracking-[.35em]">
-                    TODO
-                </h1>
+                <Link href="/">
+                    <h1 className="text-3xl font-bold text-white tracking-[.35em]">
+                        TODO
+                    </h1>
+                </Link>
                 <img
                     onClick={toggleDarkMode}
                     className="w-6 h-6 cursor-pointer hidden dark:block"
@@ -54,10 +56,17 @@ export default function Todo({ auth, todos }) {
                     />
                 </form>
 
-                <div className="rounded-md shadow-md max-w-sm md:max-w-md w-full mx-auto">
-                    {todos.map((todo) => (
-                        <TodoItem key={todo.id} todo={todo} />
-                    ))}
+                <div className="rounded-md shadow-all max-w-sm md:max-w-md w-full mx-auto">
+                    {todos.map((todo) => {
+                        if (filterCompleted === null) {
+                            return <TodoItem key={todo.id} todo={todo} />;
+                        } else if (filterCompleted && todo.completed) {
+                            return <TodoItem key={todo.id} todo={todo} />;
+                        } else if (!filterCompleted && !todo.completed) {
+                            return <TodoItem key={todo.id} todo={todo} />;
+                        }
+                        return null;
+                    })}
                     <ControlPanel />
                 </div>
             </div>

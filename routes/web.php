@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodoController;
-use App\Models\Todo;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,13 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    $todos = auth()->user()->todos()->latest()->get();
-    return Inertia::render('Todo', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'todos' => $todos
-    ]);})
+Route::get('/', [TodoController::class, 'index'])
     ->middleware(['auth'])
     ->name('home');
 

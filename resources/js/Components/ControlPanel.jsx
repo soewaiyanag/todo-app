@@ -5,8 +5,8 @@ export default function ControlPanel() {
 
     const filterOptions = [
         { label: "All", value: "" },
-        { label: "Active", value: "active" },
-        { label: "Completed", value: "completed" },
+        { label: "Active", value: "false" },
+        { label: "Completed", value: "true" },
     ];
 
     return (
@@ -20,7 +20,7 @@ export default function ControlPanel() {
                     <Link
                         as="button"
                         key={label.toLowerCase()}
-                        href={value === "" ? "/" : `/?filter=${value}`}
+                        href={value === "" ? "/" : `/?completed=${value}`}
                         preserveScroll
                     >
                         {label}

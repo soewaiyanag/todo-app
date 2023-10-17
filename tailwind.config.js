@@ -18,6 +18,9 @@ export default {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 josefin: ["Josefin Sans", ...defaultTheme.fontFamily.sans],
             },
+            boxShadow: {
+                all: "0 0 5px rgba(0, 0, 0, 0.2)",
+            },
             backgroundImage: {
                 "desktop-light": "url(/images/bg-desktop-light.jpg)",
                 "desktop-dark": "url(/images/bg-desktop-dark.jpg)",
@@ -49,6 +52,7 @@ export default {
 
     plugins: [
         forms,
+        require("./plugins/shadow-all"),
         plugin(function ({ addBase }) {
             addBase({
                 html: { fontSize: "18px" },

@@ -33,7 +33,7 @@
 }
 
 .filters {
-    @apply absolute px-4 py-3 shadow-md bg-white dark:bg-very-dark-desaturated-blue
+    @apply absolute px-4 py-3 shadow-all bg-white dark:bg-very-dark-desaturated-blue
         flex justify-center gap-4 rounded-md w-full
         translate-y-14 -translate-x-1/2 left-1/2 text-sm
         md:text-xs md:w-fit md:bg-transparent md:translate-y-0 md:shadow-none md:space-x-0 md:flex md:items-center;
