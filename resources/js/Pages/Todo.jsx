@@ -19,7 +19,7 @@ export default function Todo({ auth, todos }) {
     };
 
     return (
-        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue mx-6">
+        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6">
             <Head title="Todo App" />
             <BackgroundImage />
             <div className="flex max-w-sm md:max-w-md w-full justify-between items-center mx-auto mt-12 relative z-20">
