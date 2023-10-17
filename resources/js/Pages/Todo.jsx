@@ -67,7 +67,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                         }
                         return null;
                     })}
-                    <ControlPanel />
+                    {todos.length > 0 && <ControlPanel />}
                 </div>
             </div>
         </div>
