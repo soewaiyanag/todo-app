@@ -1,7 +1,7 @@
 import BackgroundImage from "@/Components/BackgroundImage";
 import ControlPanel from "@/Components/ControlPanel";
 import PrimaryButton from "@/Components/PrimaryButton";
-import TodoItem from "@/Components/TodoItem.1";
+import TodoItem from "@/Components/TodoItem";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Todo({ auth, todos, filterCompleted }) {
