@@ -21,6 +21,9 @@ Route::get('/', [TodoController::class, 'index'])
     ->middleware(['auth'])
     ->name('home');
 
+Route::delete('/todos/clear-completed', [TodoController::class, 'clearCompleted'])
+    ->name('todos.clear-completed');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

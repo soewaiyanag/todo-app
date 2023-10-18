@@ -30,7 +30,7 @@ export default function ControlPanel() {
             <Link
                 as="button"
                 method="delete"
-                // href={route("todos.clear-completed")}
+                href={route("todos.clear-completed")}
                 className="clear-completed"
             >
                 Clear Completed

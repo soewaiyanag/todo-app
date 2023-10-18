@@ -85,4 +85,9 @@ class TodoController extends Controller
         $todo->delete();
         return redirect()->back();
     }
+
+    public function clearCompleted() {
+        auth()->user()->todos()->where('completed', true)->delete();
+        return redirect()->back();
+    }
 }
