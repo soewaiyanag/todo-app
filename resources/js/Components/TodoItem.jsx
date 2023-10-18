@@ -17,7 +17,11 @@ export default function TodoItem({ todo }) {
                 onChange={handleCheckboxChange}
                 aria-label="Checkbox"
             />
-            <span className={data.completed ? "line-through" : ""}>
+            <span
+                className={
+                    data.completed ? "line-through text-dark-grayish-blue" : ""
+                }
+            >
                 {todo.task}
             </span>
             <Link

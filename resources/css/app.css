@@ -33,8 +33,8 @@
 
 .control-panel {
     @apply relative text-xs flex items-center justify-between bg-white
-        dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
-        rounded-lg px-4 py-3;
+        dark:bg-very-dark-desaturated-blue text-dark-grayish-blue
+        rounded-md px-4 py-3 font-bold;
 }
 
 .filters {

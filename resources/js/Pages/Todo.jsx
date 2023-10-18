@@ -56,7 +56,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                     />
                 </form>
 
-                <div className="rounded-md bg-white shadow-all max-w-sm md:max-w-md w-full mx-auto">
+                <div className="rounded-md bg-white dark:bg-very-dark-desaturated-blue text-very-dark-grayish-blue dark:very-light-gray shadow-all max-w-sm md:max-w-md w-full mx-auto">
                     {todos.map((todo) => {
                         if (filterCompleted === null) {
                             return <TodoItem key={todo.id} todo={todo} />;
@@ -70,6 +70,11 @@ export default function Todo({ auth, todos, filterCompleted }) {
                     {todos.length > 0 && <ControlPanel />}
                 </div>
             </div>
+            {todos.length > 0 && (
+                <small className="text-center relative z-10 block mt-10 dark:text-very-light-grayish-blue">
+                    Drag and drop to reorder list
+                </small>
+            )}
         </div>
     );
 }

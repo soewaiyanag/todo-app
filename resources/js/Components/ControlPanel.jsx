@@ -4,9 +4,9 @@ export default function ControlPanel() {
     const { props } = usePage();
 
     const filterOptions = [
-        { label: "All", value: "" },
-        { label: "Active", value: "false" },
-        { label: "Completed", value: "true" },
+        { label: "All", value: null },
+        { label: "Active", value: false },
+        { label: "Completed", value: true },
     ];
 
     return (
@@ -20,8 +20,13 @@ export default function ControlPanel() {
                     <Link
                         as="button"
                         key={label.toLowerCase()}
-                        href={value === "" ? "/" : `/?completed=${value}`}
+                        href={value === null ? "/" : `/?completed=${value}`}
                         preserveScroll
+                        className={
+                            props.filterCompleted === value
+                                ? "text-bright-blue"
+                                : ""
+                        }
                     >
                         {label}
                     </Link>
