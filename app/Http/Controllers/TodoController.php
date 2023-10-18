@@ -46,7 +46,7 @@ class TodoController extends Controller
 
         $request->user()->todos()->create($validated);
 
-        return redirect(route('home'));
+        return redirect()->back();
     }
 
     /**
@@ -74,7 +74,7 @@ class TodoController extends Controller
             'completed' => !$request->completed
         ]);
 
-        return redirect(route('home'));
+        return redirect()->back();
     }
 
     /**
@@ -83,6 +83,6 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         $todo->delete();
-        return redirect(route('home'));
+        return redirect()->back();
     }
 }
