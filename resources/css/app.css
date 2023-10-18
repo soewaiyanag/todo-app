@@ -34,7 +34,7 @@
 .control-panel {
     @apply relative text-xs flex items-center justify-between bg-white
         dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
-        rounded-b-lg px-4 py-3;
+        rounded-lg px-4 py-3;
 }
 
 .filters {

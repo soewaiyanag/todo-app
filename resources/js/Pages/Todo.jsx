@@ -56,7 +56,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                     />
                 </form>
 
-                <div className="rounded-md shadow-all max-w-sm md:max-w-md w-full mx-auto">
+                <div className="rounded-md bg-white shadow-all max-w-sm md:max-w-md w-full mx-auto">
                     {todos.map((todo) => {
                         if (filterCompleted === null) {
                             return <TodoItem key={todo.id} todo={todo} />;
