@@ -15,15 +15,20 @@
 }
 
 .todo-checkbox {
-    @apply relative rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue;
+    @apply relative overflow-hidden rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue;
 }
 
 .todo-checkbox:checked {
     @apply bg-gradient-to-br from-cyan-blue to-light-purple;
 }
 
+.todo-checkbox::after {
+    @apply content-[url("/images/icon-check.svg")] absolute top-[55%] left-1/2 -translate-x-1/2 translate-y-full
+        transition-transform ease-[cubic-bezier(0.175,0.885,0.32,1.275)];
+}
+
 .todo-checkbox:checked::after {
-    @apply content-[url("/images/icon-check.svg")] absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply -translate-y-1/2;
 }
 
 .control-panel {
