@@ -15,7 +15,7 @@
 }
 
 .todo-checkbox {
-    @apply rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue;
+    @apply relative rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue;
 }
 
 .todo-checkbox:checked {
@@ -23,7 +23,7 @@
 }
 
 .todo-checkbox:checked::after {
-    @apply content-[url("/images/icon-check.svg")] grid justify-center pt-1.5;
+    @apply content-[url("/images/icon-check.svg")] absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
 .control-panel {
