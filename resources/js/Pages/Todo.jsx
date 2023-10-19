@@ -53,6 +53,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                         placeholder="Create a new todo..."
                         className="absolute min-w-full h-12 pl-[3.25rem] inset-0 outline-none rounded-md border-none bg-transparent dark:caret-white dark:text-very-light-grayish-blue"
                         aria-label="Create a new todo"
+                        autoComplete="off"
                     />
                 </form>
 
