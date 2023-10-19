@@ -4,18 +4,18 @@
 
 .todo-form {
     @apply px-4 py-4 mb-4 mt-8 flex items-center h-12 max-w-sm md:max-w-md mx-auto relative
-        rounded-md bg-white dark:bg-very-dark-desaturated-blue;
+        rounded-md bg-white dark:bg-very-dark-desaturated-blue transition-colors;
 }
 
 .todo-item {
     @apply px-4 py-3 bg-white dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
         border-dark-grayish-blue border-b-[.1px] last:border-none
-        grid grid-cols-[auto_1fr_auto] gap-4 items-center
+        grid grid-cols-[auto_1fr_auto] gap-4 items-center transition-colors
         first:rounded-t-md last:rounded-b-md md:last:rounded-none;
 }
 
 .todo-checkbox {
-    @apply relative overflow-hidden rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue;
+    @apply relative overflow-hidden rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue transition-colors;
 }
 
 .todo-checkbox:checked {
@@ -34,12 +34,13 @@
 .control-panel {
     @apply relative text-xs flex items-center justify-between bg-white
         dark:bg-very-dark-desaturated-blue text-dark-grayish-blue
-        rounded-md px-4 py-3 font-bold;
+        rounded-md px-4 py-3 font-bold transition-colors;
 }
 
 .filters {
     @apply absolute px-4 py-3 shadow-all bg-white dark:bg-very-dark-desaturated-blue
-        flex justify-center gap-4 rounded-md w-full
+        flex justify-center gap-4 rounded-md w-full transition-colors
         translate-y-14 -translate-x-1/2 left-1/2 text-sm
-        md:text-xs md:w-fit md:bg-transparent md:translate-y-0 md:shadow-none md:space-x-0 md:flex md:items-center;
+        md:text-xs md:w-fit md:translate-y-0 md:shadow-none md:space-x-0
+        md:flex md:items-center md:bg-transparent md:dark:bg-transparent;
 }

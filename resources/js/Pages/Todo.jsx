@@ -19,7 +19,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
     };
 
     return (
-        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6 pb-40">
+        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6 pb-40 transition-colors">
             <Head title="Todo App" />
             <BackgroundImage />
             <div className="flex max-w-sm md:max-w-md w-full justify-between items-center mx-auto mt-12 relative z-20">
@@ -57,7 +57,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                     />
                 </form>
 
-                <div className="rounded-md bg-white dark:bg-very-dark-desaturated-blue text-very-dark-grayish-blue dark:very-light-gray shadow-all max-w-sm md:max-w-md w-full mx-auto">
+                <div className="rounded-md bg-white dark:bg-very-dark-desaturated-blue text-very-dark-grayish-blue dark:very-light-gray transition-colors shadow-all max-w-sm md:max-w-md w-full mx-auto">
                     {todos.map((todo) => {
                         if (filterCompleted === null) {
                             return <TodoItem key={todo.id} todo={todo} />;
@@ -72,7 +72,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                 </div>
             </div>
             {todos.length > 0 && (
-                <small className="text-center relative z-10 block mt-10 dark:text-very-light-grayish-blue">
+                <small className="text-center relative z-10 block mt-10 dark:text-very-light-grayish-blue transition-colors">
                     Drag and drop to reorder list
                 </small>
             )}
