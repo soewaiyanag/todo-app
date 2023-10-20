@@ -19,7 +19,15 @@ export default function Todo({ auth, todos, filterCompleted }) {
     };
 
     const onDragEnd = (result) => {
-        console.log(result);
+        const { destination, source, draggableId } = result;
+
+        if (destination === null) return;
+
+        const isSamePosition =
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index;
+
+        if (isSamePosition) return;
     };
 
     const filteredTodos = todos.filter((todo) => {
