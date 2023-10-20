@@ -11,7 +11,8 @@ class Todo extends Model
 
     protected $fillable = [
         'task',
-        'completed'
+        'completed',
+        'position'
     ];
 
     protected $casts = [

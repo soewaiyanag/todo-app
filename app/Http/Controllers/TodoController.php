@@ -43,8 +43,11 @@ class TodoController extends Controller
         $validated = $request->validate([
             'task' => 'required|string|max:255'
         ]);
+        $position = auth()->user()->todos()->max('position') + 1;
 
-        $request->user()->todos()->create($validated);
+        auth()->user()->todos()->create(array_merge($validated, [
+            'position' => $position,
+        ]));
 
         return redirect()->back();
     }
