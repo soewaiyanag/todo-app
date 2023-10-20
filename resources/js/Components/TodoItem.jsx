@@ -19,7 +19,7 @@ export default function TodoItem({ todo }) {
             />
             <span
                 className={
-                    data.completed ? "line-through text-dark-grayish-blue" : ""
+                    data.completed ? "text-dark-grayish-blue line-through" : ""
                 }
             >
                 {todo.task}
@@ -28,7 +28,7 @@ export default function TodoItem({ todo }) {
                 as="button"
                 method="delete"
                 href={route("todos.destroy", todo.id)}
-                className="md:invisible w-3.5 cursor-pointer group-hover:visible"
+                className="w-3.5 cursor-pointer group-hover:visible md:invisible"
                 aria-label="Delete"
                 preserveScroll
             >

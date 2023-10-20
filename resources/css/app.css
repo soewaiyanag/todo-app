@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 .todo-form {
-    @apply px-4 py-4 mb-4 mt-8 flex items-center h-12 max-w-sm md:max-w-md mx-auto relative
-        rounded-md bg-white dark:bg-very-dark-desaturated-blue transition-colors;
+    @apply relative mx-auto mb-4 mt-8 flex h-12 max-w-sm items-center rounded-md bg-white px-4
+        py-4 transition-colors dark:bg-very-dark-desaturated-blue md:max-w-md;
 }
 
 .todo-item {
-    @apply px-4 py-3 bg-white dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue
-        border-dark-grayish-blue border-b-[.1px] last:border-none
-        grid grid-cols-[auto_1fr_auto] gap-4 items-center transition-colors
-        first:rounded-t-md last:rounded-b-md md:last:rounded-none;
+    @apply grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b-[.1px]
+        border-dark-grayish-blue bg-white px-4
+        py-3 transition-colors first:rounded-t-md last:rounded-b-md last:border-none
+        dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue md:last:rounded-none;
 }
 
 .todo-checkbox {
-    @apply relative overflow-hidden rounded-full w-5 h-5 cursor-pointer bg-transparent border-very-dark-grayish-blue transition-colors;
+    @apply relative h-5 w-5 cursor-pointer overflow-hidden rounded-full border-very-dark-grayish-blue bg-transparent transition-colors;
 }
 
 .todo-checkbox:checked {
@@ -23,8 +23,8 @@
 }
 
 .todo-checkbox::after {
-    @apply content-[url("/images/icon-check.svg")] absolute top-[55%] left-1/2 -translate-x-1/2 translate-y-full
-        transition-transform ease-[cubic-bezier(0.175,0.885,0.32,1.275)];
+    @apply absolute left-1/2 top-[55%] -translate-x-1/2 translate-y-full transition-transform
+        ease-[cubic-bezier(0.175,0.885,0.32,1.275)] content-[url("/images/icon-check.svg")];
 }
 
 .todo-checkbox:checked::after {
@@ -32,15 +32,15 @@
 }
 
 .control-panel {
-    @apply relative text-xs flex items-center justify-between bg-white
-        dark:bg-very-dark-desaturated-blue text-dark-grayish-blue
-        rounded-md px-4 py-3 font-bold transition-colors;
+    @apply relative flex items-center justify-between rounded-md bg-white
+        px-4 py-3
+        text-xs font-bold text-dark-grayish-blue transition-colors dark:bg-very-dark-desaturated-blue;
 }
 
 .filters {
-    @apply absolute px-4 py-3 shadow-all bg-white dark:bg-very-dark-desaturated-blue
-        flex justify-center gap-4 rounded-md w-full transition-colors
-        translate-y-14 -translate-x-1/2 left-1/2 text-sm
-        md:text-xs md:w-fit md:translate-y-0 md:shadow-none md:space-x-0
-        md:flex md:items-center md:bg-transparent md:dark:bg-transparent;
+    @apply absolute left-1/2 flex w-full -translate-x-1/2 translate-y-14
+        justify-center gap-4 rounded-md bg-white px-4 py-3
+        text-sm shadow-all transition-colors dark:bg-very-dark-desaturated-blue
+        md:flex md:w-fit md:translate-y-0 md:items-center md:space-x-0
+        md:bg-transparent md:text-xs md:shadow-none md:dark:bg-transparent;
 }

@@ -19,31 +19,31 @@ export default function Todo({ auth, todos, filterCompleted }) {
     };
 
     return (
-        <div className="font-josefin min-h-screen bg-very-light-gray dark:bg-very-dark-blue px-6 pb-40 transition-colors">
+        <div className="min-h-screen bg-very-light-gray px-6 pb-40 font-josefin transition-colors dark:bg-very-dark-blue">
             <Head title="Todo App" />
             <BackgroundImage />
-            <div className="flex max-w-sm md:max-w-md w-full justify-between items-center mx-auto mt-12 relative z-20">
+            <div className="relative z-20 mx-auto mt-12 flex w-full max-w-sm items-center justify-between md:max-w-md">
                 <Link href="/">
-                    <h1 className="text-3xl font-bold text-white tracking-[.35em]">
+                    <h1 className="text-3xl font-bold tracking-[.35em] text-white">
                         TODO
                     </h1>
                 </Link>
                 <img
                     onClick={toggleDarkMode}
-                    className="w-6 h-6 cursor-pointer hidden dark:block"
+                    className="hidden h-6 w-6 cursor-pointer dark:block"
                     src="/images/icon-sun.svg"
                     aria-label="Light Mode"
                 />
                 <img
                     onClick={toggleDarkMode}
-                    className="w-6 h-6 cursor-pointer block dark:hidden"
+                    className="block h-6 w-6 cursor-pointer dark:hidden"
                     src="/images/icon-moon.svg"
                     aria-label="Dark Mode"
                 />
             </div>
             <div className="relative z-20">
                 <form onSubmit={submit} className="todo-form">
-                    <div className="todo-checkbox border absolute"></div>
+                    <div className="todo-checkbox absolute border"></div>
                     <input
                         type="text"
                         name="task"
@@ -51,13 +51,13 @@ export default function Todo({ auth, todos, filterCompleted }) {
                         value={data.task}
                         onChange={(e) => setData("task", e.target.value)}
                         placeholder="Create a new todo..."
-                        className="absolute min-w-full h-12 pl-[3.25rem] inset-0 outline-none rounded-md border-none bg-transparent dark:caret-white dark:text-very-light-grayish-blue"
+                        className="absolute inset-0 h-12 min-w-full rounded-md border-none bg-transparent pl-[3.25rem] outline-none dark:text-very-light-grayish-blue dark:caret-white"
                         aria-label="Create a new todo"
                         autoComplete="off"
                     />
                 </form>
 
-                <div className="rounded-md bg-white dark:bg-very-dark-desaturated-blue text-very-dark-grayish-blue dark:very-light-gray transition-colors shadow-all max-w-sm md:max-w-md w-full mx-auto">
+                <div className="dark:very-light-gray mx-auto w-full max-w-sm rounded-md bg-white text-very-dark-grayish-blue shadow-all transition-colors dark:bg-very-dark-desaturated-blue md:max-w-md">
                     {todos.map((todo) => {
                         if (filterCompleted === null) {
                             return <TodoItem key={todo.id} todo={todo} />;
@@ -72,7 +72,7 @@ export default function Todo({ auth, todos, filterCompleted }) {
                 </div>
             </div>
             {todos.length > 0 && (
-                <small className="text-center relative z-10 block mt-10 dark:text-very-light-grayish-blue transition-colors">
+                <small className="relative z-10 mt-10 block text-center transition-colors dark:text-very-light-grayish-blue">
                     Drag and drop to reorder list
                 </small>
             )}
