@@ -1,8 +1,8 @@
 import BackgroundImage from "@/Components/BackgroundImage";
 import ControlPanel from "@/Components/ControlPanel";
-import PrimaryButton from "@/Components/PrimaryButton";
 import TodoItem from "@/Components/TodoItem";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function Todo({ auth, todos, filterCompleted }) {
     const { data, setData, post, reset } = useForm({
@@ -17,6 +17,17 @@ export default function Todo({ auth, todos, filterCompleted }) {
         e.preventDefault();
         post(route("todos.store"), { onSuccess: () => reset() });
     };
+
+    const onDragEnd = (result) => {
+        console.log(result);
+    };
+
+    const filteredTodos = todos.filter((todo) => {
+        if (filterCompleted === null) return true;
+        if (filterCompleted && todo.completed) return true;
+        if (!filterCompleted && !todo.completed) return true;
+        return false;
+    });
 
     return (
         <div className="min-h-screen bg-very-light-gray px-6 pb-40 font-josefin transition-colors dark:bg-very-dark-blue">
@@ -57,19 +68,30 @@ export default function Todo({ auth, todos, filterCompleted }) {
                     />
                 </form>
 
-                <div className="dark:very-light-gray mx-auto w-full max-w-sm rounded-md bg-white text-very-dark-grayish-blue shadow-all transition-colors dark:bg-very-dark-desaturated-blue md:max-w-md">
-                    {todos.map((todo) => {
-                        if (filterCompleted === null) {
-                            return <TodoItem key={todo.id} todo={todo} />;
-                        } else if (filterCompleted && todo.completed) {
-                            return <TodoItem key={todo.id} todo={todo} />;
-                        } else if (!filterCompleted && !todo.completed) {
-                            return <TodoItem key={todo.id} todo={todo} />;
-                        }
-                        return null;
-                    })}
-                    {todos.length > 0 && <ControlPanel />}
-                </div>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <div className="mx-auto w-full max-w-sm rounded-md bg-white text-very-dark-grayish-blue shadow-all transition-colors dark:bg-very-dark-desaturated-blue dark:text-very-light-gray md:max-w-md">
+                        <Droppable droppableId="todo-container">
+                            {(provided) => (
+                                <div
+                                    {...provided.droppableProps}
+                                    ref={provided.innerRef}
+                                >
+                                    {filteredTodos.map(
+                                        (filteredTodo, index) => (
+                                            <TodoItem
+                                                key={filteredTodo.id}
+                                                todo={filteredTodo}
+                                                index={index}
+                                            />
+                                        ),
+                                    )}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                        {todos.length > 0 && <ControlPanel />}
+                    </div>
+                </DragDropContext>
             </div>
             {todos.length > 0 && (
                 <small className="relative z-10 mt-10 block text-center transition-colors dark:text-very-light-grayish-blue">

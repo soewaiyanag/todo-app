@@ -1,6 +1,7 @@
 import { useForm, Link } from "@inertiajs/react";
+import { Draggable } from "react-beautiful-dnd";
 
-export default function TodoItem({ todo }) {
+export default function TodoItem({ todo, index }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
 
     const handleCheckboxChange = () => {
@@ -9,31 +10,42 @@ export default function TodoItem({ todo }) {
     };
 
     return (
-        <div className="todo-item group">
-            <input
-                className="todo-checkbox"
-                type="checkbox"
-                checked={data.completed}
-                onChange={handleCheckboxChange}
-                aria-label="Checkbox"
-            />
-            <span
-                className={
-                    data.completed ? "text-dark-grayish-blue line-through" : ""
-                }
-            >
-                {todo.task}
-            </span>
-            <Link
-                as="button"
-                method="delete"
-                href={route("todos.destroy", todo.id)}
-                className="w-3.5 cursor-pointer group-hover:visible md:invisible"
-                aria-label="Delete"
-                preserveScroll
-            >
-                <img src="/images/icon-cross.svg" alt="cross-icon" />
-            </Link>
-        </div>
+        <Draggable draggableId={`todo-${todo.id}`} index={index}>
+            {(provided) => (
+                <div
+                    className="todo-item group"
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}
+                >
+                    <input
+                        className="todo-checkbox"
+                        type="checkbox"
+                        checked={data.completed}
+                        onChange={handleCheckboxChange}
+                        aria-label="Checkbox"
+                    />
+                    <span
+                        className={
+                            data.completed
+                                ? "text-dark-grayish-blue line-through"
+                                : ""
+                        }
+                    >
+                        {todo.task}
+                    </span>
+                    <Link
+                        as="button"
+                        method="delete"
+                        href={route("todos.destroy", todo.id)}
+                        className="w-3.5 cursor-pointer group-hover:visible md:invisible"
+                        aria-label="Delete"
+                        preserveScroll
+                    >
+                        <img src="/images/icon-cross.svg" alt="cross-icon" />
+                    </Link>
+                </div>
+            )}
+        </Draggable>
     );
 }
