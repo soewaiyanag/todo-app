@@ -1,7 +1,7 @@
 import BackgroundImage from "@/Components/BackgroundImage";
 import ControlPanel from "@/Components/ControlPanel";
 import TodoItem from "@/Components/TodoItem";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, router } from "@inertiajs/react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function Todo({ auth, todos, filterCompleted }) {
@@ -29,7 +29,11 @@ export default function Todo({ auth, todos, filterCompleted }) {
 
         if (isSamePosition) return;
 
-        console.log(result);
+        router.patch(route("todos.update-order"), {
+            draggableId,
+            sourceIndex: source.index,
+            destinationIndex: destination.index,
+        });
     };
 
     const filteredTodos = todos.filter((todo) => {

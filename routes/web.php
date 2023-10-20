@@ -24,6 +24,9 @@ Route::get('/', [TodoController::class, 'index'])
 Route::delete('/todos/clear-completed', [TodoController::class, 'clearCompleted'])
     ->name('todos.clear-completed');
 
+Route::patch('/todos/update-order', [TodoController::class, 'updateOrder'])
+    ->name('todos.update-order');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
