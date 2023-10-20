@@ -22,7 +22,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Todo::factory()->count(6)->create([
-            'user_id' => 1
+            'user_id' => 1,
+            'position'=> function () {
+                static $position = 1;
+                return $position++;
+            }
         ]);
     }
 }

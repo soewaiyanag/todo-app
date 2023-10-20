@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('task');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('completed')->default(false);
+            $table->unsignedInteger('position')->default(0);
             $table->timestamps();
         });
     }

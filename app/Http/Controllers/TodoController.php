@@ -14,7 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = auth()->user()->todos()->latest()->get();
+        $todos = auth()->user()->todos()->orderByDesc('position')->get();
         
         $filterCompletedQuery = request()->query('completed');
         $filterCompleted = $filterCompletedQuery === 'true' ? true : ($filterCompletedQuery == 'false' ? false : null);
