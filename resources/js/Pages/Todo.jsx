@@ -28,6 +28,8 @@ export default function Todo({ auth, todos, filterCompleted }) {
             destination.index === source.index;
 
         if (isSamePosition) return;
+
+        console.log(result);
     };
 
     const filteredTodos = todos.filter((todo) => {

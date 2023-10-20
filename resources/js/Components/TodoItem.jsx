@@ -1,8 +1,9 @@
-import { useForm, Link } from "@inertiajs/react";
+import { useForm, Link, usePage } from "@inertiajs/react";
 import { Draggable } from "react-beautiful-dnd";
 
 export default function TodoItem({ todo, index }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
+    const { props } = usePage();
 
     const handleCheckboxChange = () => {
         put(route("todos.update", todo.id), data);
@@ -10,7 +11,11 @@ export default function TodoItem({ todo, index }) {
     };
 
     return (
-        <Draggable draggableId={`todo-${todo.id}`} index={index}>
+        <Draggable
+            draggableId={`todo-${todo.id}`}
+            index={index}
+            isDragDisabled={props.filterCompleted !== null}
+        >
             {(provided) => (
                 <div
                     className="todo-item group"
