@@ -106,15 +106,35 @@ class TodoController extends Controller
         $sourcePosition = $user->todos()->count() - $sourceIndex;
         $destinationPosition = $user->todos()->count() - $destinationIndex;
 
-        $todoToMove = $user->todos()->where('position', $sourcePosition)->firstOrFail();
-        $todoAtDestination = $user->todos()->where('position', $destinationPosition)->firstOrFail();
+        $todos = $user->todos()
+            ->orderBy('position')
+            ->get();
 
+        // Get the todo to move
+        $todoToMove = $user->todos()->where('position', $sourcePosition)->first();
+
+        // If the source position is greater than the destination position, shift todos down
+        if ($sourcePosition > $destinationPosition) {
+            foreach ($todos as $todo) {
+                if ($todo->position >= $destinationPosition && $todo->position < $sourcePosition) {
+                    $todo->position += 1;
+                    $todo->save();
+                }
+            }
+        }
+        // If the source position is less than the destination position, shift todos up
+        elseif ($sourcePosition < $destinationPosition) {
+            foreach ($todos as $todo) {
+                if ($todo->position > $sourcePosition && $todo->position <= $destinationPosition) {
+                    $todo->position -= 1;
+                    $todo->save();
+                }
+            }
+        }
+
+        // Set the position of the moved todo to the destination position
         $todoToMove->position = $destinationPosition;
-        $todoAtDestination->position = $sourcePosition;
-
         $todoToMove->save();
-        $todoAtDestination->save();
-
 
         return redirect()->back();
     }
