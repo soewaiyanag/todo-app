@@ -16,7 +16,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = auth()->user()->todos()->orderByDesc('position')->get();
-        
+
         $filterCompletedQuery = request()->query('completed');
         $filterCompleted = $filterCompletedQuery === 'true' ? true : ($filterCompletedQuery == 'false' ? false : null);
 
@@ -90,7 +90,8 @@ class TodoController extends Controller
         return redirect()->back();
     }
 
-    public function clearCompleted() {
+    public function clearCompleted()
+    {
         auth()->user()->todos()->where('completed', true)->delete();
         return redirect()->back();
     }
@@ -115,21 +116,19 @@ class TodoController extends Controller
 
         // If the source position is greater than the destination position, shift todos down
         if ($sourcePosition > $destinationPosition) {
-            foreach ($todos as $todo) {
-                if ($todo->position >= $destinationPosition && $todo->position < $sourcePosition) {
-                    $todo->position += 1;
-                    $todo->save();
-                }
-            }
-        }
-        // If the source position is less than the destination position, shift todos up
-        elseif ($sourcePosition < $destinationPosition) {
-            foreach ($todos as $todo) {
-                if ($todo->position > $sourcePosition && $todo->position <= $destinationPosition) {
-                    $todo->position -= 1;
-                    $todo->save();
-                }
-            }
+            // If the source position is greater than the destination position,
+            // shift todos in between up by 1
+            $user->todos()->whereBetween('position', [$destinationPosition, $sourcePosition - 1])
+                ->increment('position');
+            $todoToMove->position = $destinationPosition;
+            $todoToMove->save();
+        } elseif ($sourcePosition < $destinationPosition) {
+            // If the source position is less than the destination position,
+            // shift todos in between down by 1
+            $user->todos()->whereBetween('position', [$sourcePosition + 1, $destinationPosition])
+                ->decrement('position');
+            $todoToMove->position = $destinationPosition;
+            $todoToMove->save();
         }
 
         // Set the position of the moved todo to the destination position
