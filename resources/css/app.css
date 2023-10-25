@@ -10,7 +10,7 @@
 .todo-item {
     @apply grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b-[.1px]
         border-dark-grayish-blue bg-white px-4
-        py-3 transition-colors first:rounded-t-md last:rounded-b-md last:border-none
+        py-3 transition-colors first:rounded-t-md
         dark:bg-very-dark-desaturated-blue dark:text-very-light-grayish-blue md:last:rounded-none;
 }
 

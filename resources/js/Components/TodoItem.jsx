@@ -1,5 +1,6 @@
 import { useForm, Link, usePage } from "@inertiajs/react";
 import { Draggable } from "react-beautiful-dnd";
+import clsx from "clsx";
 
 export default function TodoItem({ todo, index }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
@@ -16,9 +17,14 @@ export default function TodoItem({ todo, index }) {
             index={index}
             isDragDisabled={props.filterCompleted !== null}
         >
-            {(provided) => (
+            {(provided, snapshot) => (
                 <div
-                    className="todo-item group"
+                    className={clsx(
+                        "todo-item group",
+                        snapshot.isDragging
+                            ? "rounded-md border-none shadow-md"
+                            : null,
+                    )}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}

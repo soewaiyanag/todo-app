@@ -4,7 +4,7 @@ import TodoItem from "@/Components/TodoItem";
 import { Head, Link, useForm, router } from "@inertiajs/react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-export default function Todo({ auth, todos, filterCompleted }) {
+export default function Todo({ todos, filterCompleted }) {
     const { data, setData, post, reset } = useForm({
         task: "",
     });
