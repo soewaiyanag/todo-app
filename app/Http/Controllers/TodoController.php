@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
-use DB;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -86,6 +85,8 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
+        $todosQuery = auth()->user()->todos()->where('position', '>', $todo->position);
+        $todosQuery->decrement('position');
         $todo->delete();
         return redirect()->back();
     }
