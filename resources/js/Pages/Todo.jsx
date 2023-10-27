@@ -1,7 +1,8 @@
 import BackgroundImage from "@/Components/BackgroundImage";
-import { Head, Link, useForm, router } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 import TodoItems from "@/Components/TodoItems";
+import Header from "@/Components/Header";
 
 export default function Todo({ auth, todos: initialTodos }) {
     const [todos, setTodos] = useState(initialTodos);
@@ -10,17 +11,15 @@ export default function Todo({ auth, todos: initialTodos }) {
         task: "",
     });
 
-    const toggleDarkMode = () => {
-        document.body.classList.toggle("dark");
-    };
-
     const submit = (e) => {
         e.preventDefault();
+
         if (data.task.trim() === "") return;
 
         const maxId = todos.reduce((max, todo) => {
             return todo.id > max ? todo.id : max;
         }, 0);
+
         setTodos([
             {
                 id: maxId + 1,
@@ -37,25 +36,7 @@ export default function Todo({ auth, todos: initialTodos }) {
         <div className="min-h-screen bg-very-light-gray px-6 pb-40 font-josefin transition-colors dark:bg-very-dark-blue">
             <Head title="Todo App" />
             <BackgroundImage />
-            <div className="relative z-20 mx-auto mt-12 flex w-full max-w-sm items-center justify-between md:max-w-md">
-                <Link href="/">
-                    <h1 className="text-3xl font-bold tracking-[.35em] text-white">
-                        TODO
-                    </h1>
-                </Link>
-                <img
-                    onClick={toggleDarkMode}
-                    className="hidden h-6 w-6 cursor-pointer dark:block"
-                    src="/images/icon-sun.svg"
-                    aria-label="Light Mode"
-                />
-                <img
-                    onClick={toggleDarkMode}
-                    className="block h-6 w-6 cursor-pointer dark:hidden"
-                    src="/images/icon-moon.svg"
-                    aria-label="Dark Mode"
-                />
-            </div>
+            <Header />
             <div className="relative z-20">
                 <form onSubmit={submit} className="todo-form">
                     <div className="todo-checkbox absolute border"></div>
