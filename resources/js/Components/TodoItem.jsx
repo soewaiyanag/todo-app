@@ -5,6 +5,7 @@ import clsx from "clsx";
 export default function TodoItem({ todo, index, setTodos }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
     const { props } = usePage();
+
     const handleCheckboxChange = () => {
         put(route("todos.update", todo.id), data);
         setData({ completed: !data.completed });

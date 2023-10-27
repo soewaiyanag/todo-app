@@ -12,19 +12,32 @@ const reorderTodos = (todos, startIndex, endIndex) => {
     return result;
 };
 
-export default function Todo({ todos: initialTodos, filterCompleted }) {
+export default function Todo({ auth, todos: initialTodos, filterCompleted }) {
     const [todos, setTodos] = useState(initialTodos);
 
     const { data, setData, post, reset } = useForm({
         task: "",
     });
-
     const toggleDarkMode = () => {
         document.body.classList.toggle("dark");
     };
 
     const submit = (e) => {
         e.preventDefault();
+        if (data.task.trim() === "") return;
+
+        const maxId = todos.reduce((max, todo) => {
+            return todo.id > max ? todo.id : max;
+        }, 0);
+        setTodos([
+            {
+                id: maxId + 1,
+                task: data.task,
+                position: todos.length + 1,
+                user_id: auth.user?.id,
+            },
+            ...todos,
+        ]);
         post(route("todos.store"), { onSuccess: () => reset() });
     };
 
