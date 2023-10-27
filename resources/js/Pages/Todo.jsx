@@ -2,12 +2,23 @@ import BackgroundImage from "@/Components/BackgroundImage";
 import ControlPanel from "@/Components/ControlPanel";
 import TodoItem from "@/Components/TodoItem";
 import { Head, Link, useForm, router } from "@inertiajs/react";
+import { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-export default function Todo({ todos, filterCompleted }) {
+const reorderTodos = (todos, startIndex, endIndex) => {
+    const result = [...todos];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+};
+
+export default function Todo({ todos: initialTodos, filterCompleted }) {
+    const [todos, setTodos] = useState(initialTodos);
+
     const { data, setData, post, reset } = useForm({
         task: "",
     });
+    console.log(todos);
 
     const toggleDarkMode = () => {
         document.body.classList.toggle("dark");
@@ -28,6 +39,8 @@ export default function Todo({ todos, filterCompleted }) {
             destination.index === source.index;
 
         if (isSamePosition) return;
+
+        setTodos(reorderTodos(todos, source.index, destination.index));
 
         router.patch(route("todos.update-order"), {
             draggableId,
@@ -79,6 +92,7 @@ export default function Todo({ todos, filterCompleted }) {
                         className="absolute inset-0 h-12 min-w-full rounded-md border-none bg-transparent pl-[3.25rem] outline-none dark:text-very-light-grayish-blue dark:caret-white"
                         aria-label="Create a new todo"
                         autoComplete="off"
+                        required
                     />
                 </form>
 

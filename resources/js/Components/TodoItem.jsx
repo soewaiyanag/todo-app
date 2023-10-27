@@ -1,11 +1,10 @@
-import { useForm, Link, usePage } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import { Draggable } from "react-beautiful-dnd";
 import clsx from "clsx";
 
 export default function TodoItem({ todo, index }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
     const { props } = usePage();
-
     const handleCheckboxChange = () => {
         put(route("todos.update", todo.id), data);
         setData({ completed: !data.completed });
@@ -40,21 +39,20 @@ export default function TodoItem({ todo, index }) {
                         className={
                             data.completed
                                 ? "text-dark-grayish-blue line-through"
-                                : ""
+                                : null
                         }
                     >
                         {todo.task}
                     </span>
-                    <Link
-                        as="button"
-                        method="delete"
-                        href={route("todos.destroy", todo.id)}
+                    <button
                         className="w-3.5 cursor-pointer group-hover:visible md:invisible"
                         aria-label="Delete"
-                        preserveScroll
+                        onClick={() => {
+                            router.delete(route("todos.destroy", todo));
+                        }}
                     >
                         <img src="/images/icon-cross.svg" alt="cross-icon" />
-                    </Link>
+                    </button>
                 </div>
             )}
         </Draggable>
