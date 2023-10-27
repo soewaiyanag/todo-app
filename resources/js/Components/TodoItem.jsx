@@ -2,7 +2,7 @@ import { useForm, usePage, router } from "@inertiajs/react";
 import { Draggable } from "react-beautiful-dnd";
 import clsx from "clsx";
 
-export default function TodoItem({ todo, index }) {
+export default function TodoItem({ todo, index, setTodos }) {
     const { put, data, setData } = useForm({ completed: todo.completed });
     const { props } = usePage();
     const handleCheckboxChange = () => {
@@ -48,7 +48,10 @@ export default function TodoItem({ todo, index }) {
                         className="w-3.5 cursor-pointer group-hover:visible md:invisible"
                         aria-label="Delete"
                         onClick={() => {
-                            router.delete(route("todos.destroy", todo));
+                            setTodos(
+                                props.todos.filter((td) => td.id !== todo.id),
+                            );
+                            router.delete(route("todos.destroy", todo.id));
                         }}
                     >
                         <img src="/images/icon-cross.svg" alt="cross-icon" />

@@ -1,6 +1,6 @@
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage, router } from "@inertiajs/react";
 
-export default function ControlPanel() {
+export default function ControlPanel({ setTodos }) {
     const { props } = usePage();
 
     const filterOptions = [
@@ -32,14 +32,15 @@ export default function ControlPanel() {
                     </Link>
                 ))}
             </div>
-            <Link
-                as="button"
-                method="delete"
-                href={route("todos.clear-completed")}
+            <button
                 className="clear-completed"
+                onClick={() => {
+                    setTodos(props.todos.filter((todo) => !todo.completed));
+                    router.delete(route("todos.clear-completed"));
+                }}
             >
                 Clear Completed
-            </Link>
+            </button>
         </div>
     );
 }

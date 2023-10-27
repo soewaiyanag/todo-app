@@ -18,7 +18,6 @@ export default function Todo({ todos: initialTodos, filterCompleted }) {
     const { data, setData, post, reset } = useForm({
         task: "",
     });
-    console.log(todos);
 
     const toggleDarkMode = () => {
         document.body.classList.toggle("dark");
@@ -107,6 +106,7 @@ export default function Todo({ todos: initialTodos, filterCompleted }) {
                                     {filteredTodos.map(
                                         (filteredTodo, index) => (
                                             <TodoItem
+                                                setTodos={setTodos}
                                                 key={filteredTodo.id}
                                                 todo={filteredTodo}
                                                 index={index}
@@ -117,7 +117,9 @@ export default function Todo({ todos: initialTodos, filterCompleted }) {
                                 </div>
                             )}
                         </Droppable>
-                        {todos.length > 0 && <ControlPanel />}
+                        {todos.length > 0 && (
+                            <ControlPanel setTodos={setTodos} />
+                        )}
                     </div>
                 </DragDropContext>
             </div>
