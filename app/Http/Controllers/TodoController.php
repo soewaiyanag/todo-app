@@ -19,9 +19,7 @@ class TodoController extends Controller
         $filterCompletedQuery = request()->query('completed');
         $filterCompleted = $filterCompletedQuery === 'true' ? true : ($filterCompletedQuery == 'false' ? false : null);
 
-        return Inertia::render('Todo', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
+        return Inertia::render('App', [
             'todos' => $todos,
             'filterCompleted' => $filterCompleted
         ]);

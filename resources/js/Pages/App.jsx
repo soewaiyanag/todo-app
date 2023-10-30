@@ -4,7 +4,7 @@ import { useState } from "react";
 import TodoItems from "@/Components/TodoItems";
 import Header from "@/Components/Header";
 
-export default function Todo({ auth, todos: initialTodos }) {
+export default function App({ auth, todos: initialTodos }) {
     const [todos, setTodos] = useState(initialTodos);
 
     const { data, setData, post, reset } = useForm({
